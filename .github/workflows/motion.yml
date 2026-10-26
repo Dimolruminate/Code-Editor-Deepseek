@@ -1,0 +1,32 @@
+name: "ESTUARY"
+run-name: "HIGHLAND"
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+jobs:
+  North:
+    concurrency:
+      group: "VERMILION-${{ github.workflow }}"
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    environment:
+      name: "github-pages"
+      url: ${{ steps.SHORELINE.outputs.page_url }}
+    steps:
+      - name: "harvest"
+        uses: actions/checkout@v5
+      - name: "buckeye"
+        uses: actions/configure-pages@v6
+      - name: "POPPY"
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./
+      - name: "CITRINE"
+        id: SHORELINE
+        uses: actions/deploy-pages@v5
